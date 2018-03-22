@@ -1,17 +1,20 @@
-import React from 'react';
-import {inject, observer} from 'mobx-react';
-import styled from 'styled-components';
+import React from 'react'
+import { inject, observer } from 'mobx-react'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
-  width: 1200px;
-  max-width: 100%;
-  margin: 0 auto;
-  margin-bottom: 50px;
-`;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 600;
+`
 
-const App = ({root}) =>
-    <Wrapper>
-        Pufin
-    </Wrapper>;
+const App = ({ root }) =>
+  <Wrapper>
+    Puffin
+  </Wrapper>
 
-export default inject('root')(observer(App));
+export default inject('root')(observer(App))
