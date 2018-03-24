@@ -12,9 +12,9 @@ const Wrapper = styled.div`
   font-weight: 600;
 `
 
-const App = ({ root }) =>
+const App = ({ rootStore }) =>
   <Wrapper>
     Puffin
   </Wrapper>
 
-export default inject('root')(observer(App))
+export default inject('rootStore')(observer(App))

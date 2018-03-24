@@ -1,25 +1,34 @@
+import './styles/main.scss'
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'mobx-react'
+import { AppContainer } from 'react-hot-loader'
+import RootStore from './stores/rootStore'
 import App from './components/app'
 import registerServiceWorker from './registerServiceWorker'
 
-import './styles/main.css'
-import RootStore from './stores/root'
-
 const rootStore = RootStore.create()
 
-const store = {
-  root: rootStore
-}
-
-// TODO add ESLINT, DECORATORS, HOT RELOAD and OTHER features for development
-
-const router = (
-  <Provider {...store}>
-    <App/>
-  </Provider>
+render(
+  <AppContainer>
+    <Provider rootStore={rootStore}>
+      <App/>
+    </Provider>
+  </AppContainer>,
+  document.getElementById('root')
 )
 
-render(router, document.getElementById('root'))
 registerServiceWorker()
+
+if (module.hot) {
+  module.hot.accept('./components/app', () => {
+    const NextApp = require('./components/app').default
+
+    render(
+      <AppContainer>
+        <NextApp rootStore={rootStore}/>
+      </AppContainer>,
+      document.getElementById('root')
+    )
+  })
+}
