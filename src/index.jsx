@@ -7,7 +7,7 @@ import RootStore from './stores/rootStore'
 import App from './components/app'
 import registerServiceWorker from './registerServiceWorker'
 
-const rootStore = RootStore.create()
+const rootStore = RootStore.create({search: ''})
 
 render(
   <AppContainer>
@@ -26,7 +26,9 @@ if (module.hot) {
 
     render(
       <AppContainer>
-        <NextApp rootStore={rootStore}/>
+        <Provider rootStore={rootStore}>
+          <NextApp/>
+        </Provider>
       </AppContainer>,
       document.getElementById('root')
     )

@@ -1,11 +1,5 @@
 const path = require('path')
 const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-
-const extractCSS = new ExtractTextPlugin({
-  filename: '[name]-[hash].css',
-  allChunks: true
-});
 
 module.exports = {
   entry: [
@@ -46,6 +40,11 @@ module.exports = {
     {
       test: /\.scss$/,
       loader: 'style-loader!css-loader!sass-loader?sourceMap'
+    },
+    {
+      test: /\.(jpg|jpeg|gif|png|svg)$/,
+      exclude: /node_modules/,
+      use: 'file-loader'
     }]
   }
 }
