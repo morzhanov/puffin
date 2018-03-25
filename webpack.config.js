@@ -8,7 +8,6 @@ const extractCSS = new ExtractTextPlugin({
 });
 
 module.exports = {
-  devtool: 'eval',
   entry: [
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:3000',
@@ -20,6 +19,18 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/static/'
   },
+  devServer: {
+    contentBase: __dirname + '/src',
+    host: '0.0.0.0',
+    port: 3000,
+    historyApiFallback: true,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000,
+    }
+  },
+  cache: true,
+  devtool: 'inline-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
