@@ -42,13 +42,17 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "classnames": "^2.2.5",
     "css-loader": "^0.28.11",
+    "lodash": "^4.17.5",
     "mobx": "^4.1.0",
     "mobx-react": "^5.0.0",
     "mobx-state-tree": "^2.0.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-photo-gallery": "^6.0.22",
-    "styled-components": "^3.1.6"
+    "styled-components": "^3.1.6",
+    "unsplash-js": "^4.8.0"
   }
 }

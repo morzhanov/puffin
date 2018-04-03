@@ -15,13 +15,17 @@ module.exports = {
   },
   devServer: {
     contentBase: __dirname + '/src',
+    disableHostCheck: true,
     host: '0.0.0.0',
     port: 3000,
     historyApiFallback: true,
     watchOptions: {
       aggregateTimeout: 300,
-      poll: 1000,
+      poll: true
     }
+  },
+  watchOptions: {
+    poll: true
   },
   cache: true,
   devtool: 'inline-source-map',
