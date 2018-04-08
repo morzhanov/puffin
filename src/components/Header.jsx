@@ -14,6 +14,9 @@ const HeaderWrapper = styled.header`
 `
 
 const Logo = styled.img`
+  position: absolute;
+  top: 24px;
+  left: 24px;
   height: 80px;
   width: 80px;
 `

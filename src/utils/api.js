@@ -10,8 +10,8 @@ const setConfig = (config) => ({
 })
 
 export const api = {
-  postSearch: (s) => {
-    const url = `https://api.unsplash.com/search/photos/?page=1&per_page=100&query=${s}`
+  postSearch: (query, page) => {
+    const url = `https://api.unsplash.com/search/photos/?page=${page}&per_page=30&query=${query}`
     return axios.get(url, setConfig())
   }
 }

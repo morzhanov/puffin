@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Icon from './Icon'
+import { TextField } from 'material-ui'
+import muiThemeable from 'material-ui/styles/muiThemeable'
 import { inject, observer } from 'mobx-react/index'
 
 const SearchWrapper = styled.div`
@@ -23,23 +25,31 @@ const SearchBar = styled.div`
     height: 20px;
     margin-left: -26px;
     cursor: pointer;
-    color: #5a49ff;
+  }
+  button {
+    position: absolute;
+    top: 24px;
+    right: 24px;
   }
 `
 
-const Search = ({ rootStore }) => {
+const Search = ({ rootStore, muiTheme }) => {
   return (
     <SearchWrapper>
       <SearchBar>
-        <input type="text"
+        <TextField type="text"
+          underlineStyle={{borderColor: muiTheme.palette.primaryColor}}
+          name="search"
           value={rootStore.search}
           onKeyPress={(e) => e.key === 'Enter' && rootStore.performSearch()}
           onChange={v => rootStore.changeSearch(v.target.value)}/>
         <Icon id="fa-search"
+          color={muiTheme.palette.primaryColor}
           onClick={() => rootStore.performSearch()}/>
+        <button onClick={() => rootStore.loadMore()}>Load More</button>
       </SearchBar>
     </SearchWrapper>
   )
 }
 
-export default inject('rootStore')(observer(Search))
+export default muiThemeable()(inject('rootStore')(observer(Search)))
