@@ -38,31 +38,36 @@ const RootStore = types.model('RootStore', {
     self.photos = self.photos.concat(p)
   },
   performSearch () {
-    self.search &&
-    (self.search !== '') &&
-    api.postSearch(self.search, 1).then(res => {
-      self.setSavedSearch(self.search)
-      self.setPage(1)
-      const photos = _.map(res.data.results, r => ({
-        src: r.urls.small,
-        full: r.urls.full,
-        width: r.width,
-        height: r.height
-      }))
-      self.setPhotos(photos)
-    })
+    _.throttle(() => {
+      self.search &&
+      (self.search !== '') &&
+      api.postSearch(self.search, 1).then(res => {
+        self.setSavedSearch(self.search)
+        self.setPage(1)
+        const photos = _.map(res.data.results, r => ({
+          src: r.urls.small,
+          full: r.urls.full,
+          width: r.width,
+          height: r.height
+        }))
+        self.setPhotos(photos)
+        console.log(self.photos)
+      })
+    }, 2000)()
   },
   loadMore () {
-    self.setPage(self.page + 1)
-    api.postSearch(self.search, self.page).then(res => {
-      const photos = _.map(res.data.results, r => ({
-        src: r.urls.small,
-        full: r.urls.full,
-        width: r.width,
-        height: r.height
-      }))
-      self.addPhotos(photos)
-    })
+    _.throttle(() => {
+      self.setPage(self.page + 1)
+      api.postSearch(self.search, self.page).then(res => {
+        const photos = _.map(res.data.results, r => ({
+          src: r.urls.small,
+          full: r.urls.full,
+          width: r.width,
+          height: r.height
+        }))
+        self.addPhotos(photos)
+      })
+    }, 2000)()
   }
 })).views(self => ({
   get allPhotos () {

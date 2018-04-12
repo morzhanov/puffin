@@ -46,7 +46,6 @@ const Search = ({ rootStore, muiTheme }) => {
         <Icon id="fa-search"
           color={muiTheme.palette.primaryColor}
           onClick={() => rootStore.performSearch()}/>
-        <button onClick={() => rootStore.loadMore()}>Load More</button>
       </SearchBar>
     </SearchWrapper>
   )
