@@ -5,3 +5,16 @@
 body {
   background-color: #fbe3ff;
 }
+
+.gallery-item {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 95%;
+  width: 95%;
+  &:hover {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+}

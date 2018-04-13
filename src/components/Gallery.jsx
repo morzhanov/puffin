@@ -1,6 +1,29 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import Gallery from 'react-photo-gallery'
+import Paper from 'material-ui/Paper'
+import styled from 'styled-components'
+
+const paperStyle = (props) => ({
+  backgroundImage: `url(${props.url})`
+})
+
+const Gallery = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+`
+
+const Box = styled.div`
+  height: 30vh;
+  width: 30%;
+  margin: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`
 
 class ImageGallery extends React.Component {
   componentDidMount () {
@@ -18,8 +41,17 @@ class ImageGallery extends React.Component {
   }
 
   render () {
+    const photos = this.props.rootStore.allPhotos
     return (
-      <Gallery photos={this.props.rootStore.allPhotos.toJSON()} margin={12}/>
+      <Gallery>
+        {
+          photos.map(e => <Box>
+            <Paper className="gallery-item"
+              zDepth={4}
+              style={paperStyle({ url: e.src })}/>
+          </Box>)
+        }
+      </Gallery>
     )
   }
 }
