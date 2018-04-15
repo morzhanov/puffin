@@ -2,6 +2,10 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import Paper from 'material-ui/Paper'
 import styled from 'styled-components'
+import FullSize from './FullSize'
+import Example from './Example'
+import Loader from './Loader'
+const Fragment = React.Fragment
 
 const paperStyle = (props) => ({
   backgroundImage: `url(${props.url})`
@@ -41,17 +45,23 @@ class ImageGallery extends React.Component {
   }
 
   render () {
-    const photos = this.props.rootStore.allPhotos
+    const {rootStore} = this.props
     return (
-      <Gallery>
-        {
-          photos.map(e => <Box>
-            <Paper className="gallery-item"
-              zDepth={4}
-              style={paperStyle({ url: e.src })}/>
-          </Box>)
-        }
-      </Gallery>
+      <Fragment>
+        {!rootStore.allPhotos.length && <Example/>}
+        <Gallery>
+          {
+            rootStore.allPhotos.map(e => <Box key={e.src}>
+              <Paper className="gallery-item"
+                onClick={() => rootStore.openPhoto(e.regular)}
+                zDepth={4}
+                style={paperStyle({ url: e.src })}/>
+            </Box>)
+          }
+        </Gallery>
+        {rootStore.currentPhoto && <FullSize/>}
+        {rootStore.loading && <Loader/>}
+      </Fragment>
     )
   }
 }

@@ -1,34 +1,37 @@
 import React from 'react'
 import styled from 'styled-components'
 import Search from './Search'
+import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar'
 import LogoImage from '../assets/logo.png'
+import muiThemeable from 'material-ui/styles/muiThemeable'
 import { inject, observer } from 'mobx-react/index'
 
-const HeaderWrapper = styled.header`
-  width: 100%;
-  height: 200px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-`
-
 const Logo = styled.img`
-  position: absolute;
-  top: 24px;
-  left: 24px;
-  height: 80px;
-  width: 80px;
+  height: 70%;
+  width: auto;
+  margin-right: 30px;
 `
 
-const Header = ({ rootStore }) => {
+const Header = ({ rootStore, muiTheme }) => {
   return (
-    <HeaderWrapper>
-      <Logo src={LogoImage} />
-      <h1>Puffin. Search for Images.</h1>
-      <Search/>
-    </HeaderWrapper>
+    <Toolbar style={{
+      width: '100%',
+      boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px',
+      backgroundColor: muiTheme.palette.primaryColor
+    }}>
+      <ToolbarGroup>
+        <Logo src={LogoImage}/>
+      </ToolbarGroup>
+      <ToolbarGroup style={{
+        width: '100%',
+        dislpay: 'flex'
+      }}>
+        <Search/>
+      </ToolbarGroup>
+    </Toolbar>
   )
 }
 
-export default inject('rootStore')(observer(Header))
+export default muiThemeable()(
+  inject('rootStore')(observer(Header))
+)

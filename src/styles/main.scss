@@ -3,7 +3,8 @@
 }
 
 body {
-  background-color: #fbe3ff;
+  background-color: #fff;
+  margin: 0;
 }
 
 .gallery-item {
@@ -16,5 +17,18 @@ body {
     position: relative;
     height: 100%;
     width: 100%;
+  }
+}
+
+.image-modal {
+  .body {
+    padding: 0 !important;
+  }
+}
+
+.arrow {
+  color: #fff !important;
+  &:hover {
+    color: #445 !important;
   }
 }
