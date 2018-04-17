@@ -11,7 +11,7 @@ const ExampleWrapper = styled.div`
 `
 
 const Or = styled.p`
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   opacity: 0.5;
   text-align: center;
@@ -21,10 +21,15 @@ const Or = styled.p`
 const Example = ({ muiTheme, rootStore }) => (
   <ExampleWrapper>
     <RaisedButton style={{
+      width: 300,
+      height: 64,
       marginTop: '20%'
     }}
+    buttonStyle={{
+      backgroundColor: muiTheme.palette.accentColor,
+    }}
     labelStyle={{
-      fontSize: 18,
+      fontSize: 24,
     }}
     label="See the Puffins!"
     onClick={() => {
@@ -33,7 +38,7 @@ const Example = ({ muiTheme, rootStore }) => (
     }}
     primary={true} />
     <br/>
-    <Or color={muiTheme.palette.textColorGray}>Or search for images via search bar above</Or>
+    <Or color={muiTheme.palette.accentColor}>Or search for images via search bar above</Or>
   </ExampleWrapper>
 )
 

@@ -17,3 +17,13 @@ export const preloadImages = (array) => {
     img.src = array[i].src
   }
 }
+
+export const preloadImage = (src) => {
+  return new Promise((resolve) => {
+    const img = new window.Image()
+    img.onloadend = () => {
+      resolve()
+    }
+    img.src = src
+  })
+}

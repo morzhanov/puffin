@@ -4,10 +4,10 @@ import { fade } from 'material-ui/utils/colorManipulator'
 
 export default (customPalette = {}) => {
   const palette = {
-    primaryColor: customPalette.primary1Color || '#00bcd4',
-    accentColor: customPalette.accent1Color || '#ff4081',
-    textColor: customPalette.textColor || '#fff',
-    textColorGray: '#626262',
+    primaryColor: customPalette.primary1Color || '#E58F65',
+    accentColor: customPalette.accent1Color || '#D05353',
+    textColor: customPalette.textColor || '#FBFBFB',
+    textColorGray: '#A3A380',
   }
   return {
     spacing,

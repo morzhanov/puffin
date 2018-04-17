@@ -7,7 +7,7 @@ import CircularProgress from 'material-ui/CircularProgress'
 const LoaderWrapper = styled.div`
   top: 57px;
   left: 0;
-  position: absolute;
+  position: fixed;
   opacity: 0.9;
   background-color: ${({color}) => color};
   width: 100%;

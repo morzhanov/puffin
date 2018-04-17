@@ -9,17 +9,19 @@ import { inject, observer } from 'mobx-react/index'
 const Logo = styled.img`
   height: 70%;
   width: auto;
-  margin-right: 30px;
 `
 
 const Header = ({ rootStore, muiTheme }) => {
   return (
     <Toolbar style={{
       width: '100%',
+      // position: 'fixed',
+      // top: 0,
+      // left: 0,
       boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px',
       backgroundColor: muiTheme.palette.primaryColor
     }}>
-      <ToolbarGroup>
+      <ToolbarGroup style={{marginRight: '30px'}}>
         <Logo src={LogoImage}/>
       </ToolbarGroup>
       <ToolbarGroup style={{

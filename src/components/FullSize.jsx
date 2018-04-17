@@ -1,10 +1,10 @@
 import React from 'react'
-import { observer, inject } from 'mobx-react'
+import ReactDOM from 'react-dom'
+import { inject, observer } from 'mobx-react'
 import Paper from 'material-ui/Paper'
 import ArrowLeft from 'material-ui/svg-icons/hardware/keyboard-arrow-left'
 import ArrowRight from 'material-ui/svg-icons/hardware/keyboard-arrow-right'
 import styled from 'styled-components'
-// import Loader from './Loader'
 
 const Wrapper = styled.div`
   position: absolute;
@@ -20,6 +20,8 @@ const Wrapper = styled.div`
 
 const ArrowPanel = styled.div`
   background-color: rgba(98,98,98,0.46);
+  min-width: 8%;
+  max-width: 8%;
   width: 100px;
   position: fixed;
   top: 0;
@@ -32,8 +34,8 @@ const ArrowPanel = styled.div`
   cursor: pointer;
   transition: all ease 300ms;
   .arrow {
-    width: 70px !important;
-    height: 70px !important;
+    width: 70% !important;
+    height: 70% !important;
     color: rgba(174,174,174,0.75) !important;
     &:hover {
       color: rgba(174,174,174,0.98) !important;
@@ -50,25 +52,42 @@ const Image = styled.img`
 `
 
 class FullSize extends React.Component {
-  componentDidMount () {
-
+  constructor (props) {
+    super(props)
+    this.image = React.createRef()
   }
-
-  next = () => (this.props.rootStore.nextImage())
-
-  prev = () => (this.props.rootStore.prevImage())
-
+  next = e => {
+    this.props.rootStore.nextImage()
+    e.stopPropagation()
+  }
+  prev = e => {
+    this.props.rootStore.prevImage()
+    e.stopPropagation()
+  }
+  handleOutsideClick = e => {
+    if (ReactDOM.findDOMNode(this.image.current) !== e.target) {
+      this.props.rootStore.closePhoto()
+    }
+  }
   render () {
     const {rootStore} = this.props
-    return <Wrapper>
-      <ArrowPanel left>
-        <ArrowLeft className="arrow" onClick={this.prev}/>
+    return <Wrapper onClick={this.handleOutsideClick}>
+      <ArrowPanel onClick={this.prev} left>
+        <ArrowLeft className="arrow"/>
       </ArrowPanel>
-      <Paper zDepth={4}>
-        <Image src={rootStore.currentPhoto}/>
+      <Paper style={{
+        overflow: 'hidden',
+        maxWidth: '80%',
+        display: 'flex',
+        justifyContent: 'center'
+      }}
+      zDepth={4}>
+        <Image ref={this.image}
+          className="disable-select"
+          src={rootStore.currentPhoto}/>
       </Paper>
-      <ArrowPanel>
-        <ArrowRight className="arrow" onClick={this.next}/>
+      <ArrowPanel onClick={this.next}>
+        <ArrowRight className="arrow"/>
       </ArrowPanel>
     </Wrapper>
   }

@@ -1,6 +1,7 @@
 import { types } from 'mobx-state-tree'
 import { api } from '../utils/api'
 import _ from 'lodash'
+import { preloadImage } from '../utils/utils'
 
 export const UserModel = types
   .model('UserModel', {
@@ -35,26 +36,32 @@ const RootStore = types.model('RootStore', {
     self.page = v
   },
   nextImage () {
-    const current =
-      _.findIndex(self.allPhotos, ['regular', self.currentPhoto])
-    if (current !== self.allPhotos.length) {
-      self.currentPhoto = self.allPhotos[current + 1].regular
+    const saved = self.currentPhoto
+    let current = _.findIndex(self.allPhotos, ['regular', saved])
+    if (current === self.allPhotos.length - 1) {
+      current = 0
     }
+    preloadImage(self.allPhotos[current + 1].regular).then(
+      self.currentPhoto = self.allPhotos[current + 1].regular
+    )
   },
   prevImage () {
-    const current =
-      _.findIndex(self.allPhotos, ['regular', self.currentPhoto])
-    if (current !== 0) {
-      self.currentPhoto = self.allPhotos[current - 1].regular
+    const saved = self.currentPhoto
+    let current = _.findIndex(self.allPhotos, ['regular', saved])
+    if (current === 0) {
+      current = self.allPhotos.length - 1
     }
+    preloadImage(self.allPhotos[current - 1].regular).then(
+      self.currentPhoto = self.allPhotos[current - 1].regular
+    )
   },
   setPhotos (p) {
     self.photos = p
-    self.loading = false
+    self.setLoading(false)
   },
   addPhotos (p) {
     self.photos = self.photos.concat(p)
-    self.loading = false
+    self.setLoading(false)
   },
   closePhoto () {
     self.currentPhoto = null
@@ -66,7 +73,7 @@ const RootStore = types.model('RootStore', {
     if (v) {
       document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'auto'
+      document.body.style.overflow = 'visible'
     }
     self.loading = v
   },
@@ -94,7 +101,7 @@ const RootStore = types.model('RootStore', {
   },
   loadMore () {
     _.throttle(() => {
-      self.setLoading(true)
+      // self.setLoading(true)
       self.setPage(self.page + 1)
       api.postSearch(self.search, self.page).then(res => {
         const photos = _.map(res.data.results, r => ({

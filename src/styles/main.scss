@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: #fff;
+  background-color: #F1E8B8;
   margin: 0;
 }
 
@@ -24,4 +24,11 @@ body {
   .body {
     padding: 0 !important;
   }
+}
+
+.disable-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
