@@ -36,10 +36,8 @@ class ImageGallery extends React.Component {
         document.documentElement.scrollTop ||
         document.body.scrollTop) +
         window.innerHeight === document.documentElement.offsetHeight
-      console.log(`scrolled bottomOfWindow = ${bottomOfWindow}`)
       if (bottomOfWindow) {
         this.props.rootStore.loadMore()
-        console.log('bottom!')
       }
     }
   }
@@ -51,8 +49,8 @@ class ImageGallery extends React.Component {
         {!rootStore.allPhotos.length && <Example/>}
         <Gallery>
           {
-            rootStore.allPhotos.map(e => <Box key={e.src}>
-              <Paper className="gallery-item"
+            rootStore.allPhotos.map(e => <Box key={e.id}>
+              <Paper key={e.id} className="gallery-item"
                 onClick={() => rootStore.openPhoto(e.regular)}
                 zDepth={4}
                 style={paperStyle({ url: e.src })}/>

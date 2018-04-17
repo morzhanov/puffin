@@ -10,6 +10,7 @@ export const UserModel = types
 
 export const PhotoModel = types
   .model('PhotoModel', {
+    id: types.number,
     src: types.string,
     full: types.string,
     regular: types.string,
@@ -24,7 +25,9 @@ const RootStore = types.model('RootStore', {
   savedSearch: types.string,
   currentPhoto: types.maybe(types.string),
   photos: types.array(PhotoModel),
-  loading: types.boolean
+  loading: types.boolean,
+  fetching: types.boolean,
+  totalPages: types.number
 }).actions(self => ({
   changeSearch (v) {
     self.search = v
@@ -58,16 +61,21 @@ const RootStore = types.model('RootStore', {
   setPhotos (p) {
     self.photos = p
     self.setLoading(false)
+    self.fetching = false
   },
   addPhotos (p) {
     self.photos = self.photos.concat(p)
     self.setLoading(false)
+    self.fetching = false
   },
   closePhoto () {
     self.currentPhoto = null
   },
   openPhoto (full) {
     self.currentPhoto = full
+  },
+  setTotalPages (total) {
+    self.totalPages = total
   },
   setLoading (v) {
     if (v) {
@@ -79,14 +87,18 @@ const RootStore = types.model('RootStore', {
   },
   performSearch () {
     _.throttle(() => {
-      if (!self.search || (self.search === '')) {
+      if (!self.search || (self.search === '') || self.fetching) {
         return
       }
       self.setLoading(true)
+      self.fetching = true
       api.postSearch(self.search, 1).then(res => {
         self.setSavedSearch(self.search)
         self.setPage(1)
+        self.setTotalPages(res.data.total_pages)
+        let inc = self.photos.length
         const photos = _.map(res.data.results, r => ({
+          id: ++inc,
           src: r.urls.small,
           full: r.urls.full,
           regular: r.urls.regular,
@@ -101,10 +113,15 @@ const RootStore = types.model('RootStore', {
   },
   loadMore () {
     _.throttle(() => {
-      // self.setLoading(true)
+      if (self.fetching || self.page === self.totalPages) {
+        return
+      }
+      self.fetching = true
       self.setPage(self.page + 1)
       api.postSearch(self.search, self.page).then(res => {
+        let inc = self.photos.length
         const photos = _.map(res.data.results, r => ({
+          id: ++inc,
           src: r.urls.small,
           full: r.urls.full,
           regular: r.urls.regular,
