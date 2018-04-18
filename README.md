@@ -7,7 +7,7 @@ This application was developed using <b>Axios</b> for API requests, <b>Material 
 
 ## Demo
 
-https://puffin.herokuapp.com/
+https://puffin.herokuapp.com/  <b>!not yet deployed!</b>
 
 ## Installation
 
