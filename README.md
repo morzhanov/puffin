@@ -13,7 +13,7 @@ https://puffin.herokuapp.com/
 
 Use these steps to install project
 1. yarn install
-2. Provide your Unplash API key into application
+2. provide your Unplash API key into application
 3. yarn start
 
 ## Usage
