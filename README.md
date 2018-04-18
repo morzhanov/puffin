@@ -3,7 +3,7 @@
 Puffin is an Image search application that uses <a href="https://unsplash.com/" target="_blank">Unplash open API</a>.<br>
 Puffin application created using <b>React</b>, <b>Mobx</b> as state management library alongside with <b>Mobx-State-Tree</b> state container.<br>
 This project provides an example of webpack configuration for `React+Mobx+MST`.<br>
-This application was developed using <b>Axios</b> for API requests, <b>Material UI</b> components library, and <b>styled components</b>.
+This application was developed using <b>Axios</b> for API requests, <b>Material UI</b> components library, and <b>styled components</b>. Also added ES6, ES7, decorators support so you can use all ES6+ features and decorators from ES7.
 
 ## Demo
 
@@ -12,34 +12,29 @@ https://puffin.herokuapp.com/
 ## Installation
 
 Use these steps to install project
-1. yarn insta
-2. Create credentials (TWITTER_KEY, TWITTER_SECRET)
-3. Add credentials to environment variable.
-4. Add you MongoDB database connection to process.env.MONGOURL variable
-5. npm run build
-6. npm start
+1. yarn install
+2. Provide your Unplash API key into application
+3. yarn start
 
 ## Usage
 
-In this app you can:
-1. Authenticate users using Twitter auth.
-2. Create multiple instances of twitter account in on window.
-3. Review your tweets.
-4. Review Home page with tweets.
-5. Create new tweet.
-6. Create new tweet and post it to multiple Twitter accounts.
-7. Review Profile and Settings data.
+This application allow you to:
+1. Search for images using Unplash API.
+2. Preview full and small images sizes.
+3. Switch between images.
 
 ## Main Technologies
-* React.js
-* Redux.js
-* Reselect.js
-* Redux-saga
+
+* React
+* Mobx
+* Mobx-State-Tree
+* Axios
+* Webpack
+* Material UI
 * Styled components
-* Node.js + Express.js
-* Passport.js
-* MongoDB
-* Tweet library
+* Lodash
+* SASS
+* JavaScript/HTML/CSS
 
 ## Screenshots
 
