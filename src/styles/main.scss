@@ -1,0 +1,34 @@
+* {
+  font-family: 'OpenSans', sans-serif;
+}
+
+body {
+  background-color: #F1E8B8;
+  margin: 0;
+}
+
+.gallery-item {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 95%;
+  width: 95%;
+  &:hover {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.image-modal {
+  .body {
+    padding: 0 !important;
+  }
+}
+
+.disable-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
