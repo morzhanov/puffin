@@ -5,7 +5,7 @@ Puffin application created using <b>React</b>, <b>Mobx</b> as state management l
 This project provides an example of webpack configuration for `React+Mobx+MST`.<br>
 This application was developed using <b>Axios</b> for API requests, <b>Material UI</b> components library, and <b>styled components</b>. Also added ES6, ES7, decorators support so you can use all ES6+ features and decorators from ES7.
 
-<img src="https://material-ui.com/"/>
+<img src="https://i.imgur.com/yrJR9hB.png"/>
 
 ## Demo
 
