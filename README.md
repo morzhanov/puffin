@@ -1,6 +1,6 @@
 # Puffin - Image Search application.
 
-<img src="https://i.imgur.com/0eRcJW3l.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/0eRcJW3l.png" />
 
 Puffin is an Image search application that uses <a href="https://unsplash.com/" target="_blank">Unplash open API</a>.<br>
 Puffin application created using <b>React</b>, <b>Mobx</b> as state management library alongside with <b>Mobx-State-Tree</b> state container.<br>
@@ -51,9 +51,9 @@ This application allow you to:
 
 ## Screenshots
 
-<a href="https://imgur.com/0eRcJW3"><img src="https://i.imgur.com/0eRcJW3l.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/0eRcJW3"><img src="https://i.imgur.com/0eRcJW3l.png" /></a>
 <br>
-<a href="https://imgur.com/27eeq6B"><img src="https://i.imgur.com/27eeq6Bl.png?2" title="source: imgur.com" /></a>
+<a href="https://imgur.com/27eeq6B"><img src="https://i.imgur.com/27eeq6Bl.png?2" /></a>
 
 ## Contributing
 
